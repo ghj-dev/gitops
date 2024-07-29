@@ -6,7 +6,7 @@ metadata:
     app: vite-app
   namespace: default
 spec:
-  replicas: 3 # 定义 Pod 副本数
+  replicas: 3
   selector:
     matchLabels:
       app: vite-app
@@ -17,16 +17,17 @@ spec:
     spec:
       containers:
         - name: vite-app-container
-          image: yuanxinc/vite-app:latest # 应用镜像，通常从 Docker Hub 或其他镜像仓库拉取
+          image: yuanxinc/vite-app:latest
+          imagePullPolicy: Always
           ports:
-            - containerPort: 80 # 容器内部的端口
+            - containerPort: 80
           env:
             - name: ENVIRONMENT
-              value: "production" # 环境变量
+              value: "production"
           resources:
             requests:
               memory: "64Mi"
-              cpu: "250m" # 资源请求
+              cpu: "250m"
             limits:
               memory: "128Mi"
-              cpu: "500m" # 资源限制
+              cpu: "500m"

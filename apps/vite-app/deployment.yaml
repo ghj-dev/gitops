@@ -4,6 +4,7 @@ metadata:
   name: vite-app-deployment
   labels:
     app: vite-app
+  namespace: default
 spec:
   replicas: 3 # 定义 Pod 副本数
   selector:

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vite-app-deployment
+  labels:
+    app: vite-app
+spec:
+  replicas: 3 # 定义 Pod 副本数
+  selector:
+    matchLabels:
+      app: vite-app
+  template:
+    metadata:
+      labels:
+        app: vite-app
+    spec:
+      containers:
+        - name: vite-app-container
+          image: myrepo/vite-app:latest # 应用镜像，通常从 Docker Hub 或其他镜像仓库拉取
+          ports:
+            - containerPort: 80 # 容器内部的端口
+          env:
+            - name: ENVIRONMENT
+              value: "production" # 环境变量
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m" # 资源请求
+            limits:
+              memory: "128Mi"
+              cpu: "500m" # 资源限制

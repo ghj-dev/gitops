@@ -3,11 +3,14 @@ kind: Service
 metadata:
   name: vite-app-service
   namespace: default
+  labels:
+    app: vite-app
 spec:
+  type: NodePort
   selector:
     app: vite-app
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: NodePort
+      port: 80 # 服务端口
+      targetPort: 5173 # 应用程序容器内部的端口
+      nodePort: 30885 # 可选，Kubernetes 会自动分配一个端口

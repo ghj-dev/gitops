@@ -20,7 +20,8 @@ spec:
           image: yuanxinc/vite-app:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 80
+            - containerPort: 5173
+          command: ["npm", "run", "start", "--", "--host"] # 添加 --host 参数
           env:
             - name: ENVIRONMENT
               value: "production"
